@@ -1,0 +1,21 @@
+# Create an EC2 instance (node)
+resource "aws_instance" "webserver_suraj" {
+  ami           = "ami-02ddb77f8f93ca4ca" # Amazon Linux 2 AMI (change as needed)
+  instance_type = "t2.micro"              # Free tier eligible instance type
+  key_name      = "suraj"
+  tags = {
+    Name = "webserver_suraj"
+  }
+}
+
+
+resource "aws_key_pair" "suraj" {
+  key_name   = "suraj"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDYtNvuW75d2/r2qe9o+LNggCcKHvJ+OT3FnBwT9CsWGK9Q2UeQpAKXeoS7vELGvNV17w/ggQ5mhntXKx4xwodkmB/pVj59WJHe3vVmT1oPVVxLFFhB1BeTuaUMi0w+rmN1jNGG+FiPu3E+zCXzG2hCfOMwhpkk3LGCRsIEtO3ozbncPku1yVWKtiha/piViTidQ9QzupNqFoNT+YIrBYeiGXl45/zAiTcEeMCsSEQe6lxSZCr9O9YMKkgaBDwNSNo3/s2jvOvjRQ1yqX1t27jORYb3j5FENCF3wSPB+ccXa3x0y2VCQEiN9FrvZ5fp+Pp2cZjcfpFD+Fdl8nFE7JpU9AF9F7sEMpdx0CIxkyBWcbYoqmcS7/oxIrs1+S7oGi8rQntrpWnGmUNtsMrOX3DQaB/LTiZv4hPzKC+Pnoxyp+gX6K6WdKL7cnCH9uvUgup5beiPqkwJsVecht0I5pce9l1bGwtQgDSFL23QF9p5gGeeU7q408pVgBG6GXQXJK0= root@suraj"
+}
+
+output "public_ip" {
+  description = "The public IP address of the instance"
+  value       = aws_instance.webserver_suraj.public_ip
+}
+~                                                                                                                       ~      
